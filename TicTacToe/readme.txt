@@ -1,1 +1,1 @@
-TicTackToe a console game made on Chasr as training for OOP . 
+TicTackToe a console game made on C# as training for OOP . 
