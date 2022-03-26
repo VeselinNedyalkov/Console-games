@@ -14,6 +14,7 @@ namespace TicTacToe
         {
             Board board = new Board();
             IPlayer currentPlayer = playerFirst;
+            Position currPlayerCords;
 
             while (true)
             {
@@ -25,8 +26,9 @@ namespace TicTacToe
 
                 try
                 {
-                    int[] cordsSimbol = currentPlayer.ReadCordinates(board.AIcorinates);
-                    currentPlayer.PlayTurn(cordsSimbol[0], cordsSimbol[1], board);
+                    currPlayerCords = currentPlayer.ReadCordinates(board.AIcorinates);
+                    board.IsPsnEmpty(currPlayerCords);
+                    
                 }
                 catch (Exception ex)
                 {
@@ -34,6 +36,7 @@ namespace TicTacToe
                     continue;
                 }
 
+                board.PlayerMove(currPlayerCords, currentPlayer.Simbol);
 
                 if (board.HasWiner(currentPlayer.Simbol))
                 {

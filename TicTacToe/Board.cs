@@ -50,21 +50,23 @@ namespace TicTacToe
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
-        public bool IsPsnEmpty(int row, int col)
+       
+
+        public void IsPsnEmpty(Position psn)
         {
-            bool isEmpty = false;
-            if (emptyPsn.Any(x => x.Row == row && x.Column == col))
+            if (!AIcorinates.Any(x => x.Row == psn.Row && x.Column == psn.Column))
             {
-                isEmpty = true;
+                throw new IndexOutOfRangeException("Cordinates are out of range or already player use this position!");
             }
-            return isEmpty;
+            
+            
         }
 
-        public void PlayerMove(int row, int col, char simbol)
+        public void PlayerMove(Position psn, char simbol)
         {
-            var removeEmptyPsn = emptyPsn.Single(x => x.Row == row && x.Column == col);
-            emptyPsn.Remove(removeEmptyPsn);
-            ticTackTowBoard[row, col] = simbol;
+            Position delete = emptyPsn.Single(x => x.Row == psn.Row && x.Column == psn.Column);
+            emptyPsn.Remove(delete);
+            ticTackTowBoard[psn.Row, psn.Column] = simbol;
         }
 
         public bool HaveAnyEmptyPsn()
